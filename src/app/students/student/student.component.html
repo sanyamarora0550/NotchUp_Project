@@ -1,0 +1,90 @@
+<form [formGroup]="service.form" class="normal-form">
+    <mat-grid-list cols="2" >
+      <mat-grid-tile>  
+        <div class="controles-container">
+          <input type="hidden" formControlName="$key">
+          <mat-form-field>
+            <input formControlName="parentname" matInput type="text" placeholder="Parent Full Name*">
+            <mat-error>This field is mandatory.</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="parentemail" matInput type="text" placeholder="Email">
+            <mat-error>Invalid email address.</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="mobile" matInput type="text" placeholder="Mobile*">
+            <mat-error *ngIf="service.form.controls['mobile'].errors?.required">This field is mandatory.</mat-error>
+            <mat-error *ngIf="service.form.controls['mobile'].errors?.minlength">Minimum 10 charactors needed.</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="childname" matInput  type="text" placeholder="Child Name">
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="childage" matInput type="text" placeholder="Child Age">
+          </mat-form-field>
+         
+          
+        </div>
+      </mat-grid-tile>
+
+     <mat-grid-tile>
+        <div class="controles-container">
+         
+          <mat-form-field appearance="fill">
+            <mat-label>Courses</mat-label>
+            <mat-select [(ngModel)]="selcted_course"  [formControl]="toppings" single>
+              <mat-select-trigger>
+                {{toppings.value ? toppings.value : ''}}
+              </mat-select-trigger>
+              <mat-option  *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+  
+          <mat-form-field>
+            <input [(ngModel)]="date_selected" formControlName="date" matInput [matDatepicker]="picker" placeholder="Date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+         
+          
+          
+       
+          <!--  <mat-label>Slots</mat-label>
+            <mat-selection-list >
+              <mat-list-option *ngFor="let item of data">
+                <div *ngIf="selcted_course == item.course_name"> 
+                 {{item.slots.length}} 
+                </div>
+              </mat-list-option>
+            </mat-selection-list> -->
+
+            <mat-label>Slots Avaliable For <i>{{selcted_course}} </i></mat-label>
+            <div *ngFor="let item of data">
+              <div *ngIf="selcted_course == item.course_name">              
+               <b> here  {{item.slots.length}} </b> 
+               <div *ngFor ="let av of item.slots ">
+                 <div *ngFor="let ab of av.slot">
+                  <span>{{ab}} </span>
+                 </div>
+               </div>
+               </div>
+            </div>
+
+      <!--    <mat-button-toggle-group>
+            <mat-button-toggle value="bold">14:00</mat-button-toggle>
+            <mat-button-toggle value="italic">14:30</mat-button-toggle>
+            <mat-button-toggle value="underline">15:00</mat-button-toggle>
+            <mat-button-toggle value="underline">15:30</mat-button-toggle>
+            <mat-button-toggle value="underline">16:00</mat-button-toggle>
+            <mat-button-toggle value="underline">16:30</mat-button-toggle>
+            <mat-button-toggle value="underline">17:00</mat-button-toggle>
+          </mat-button-toggle-group>
+          <div class="button-row">
+            <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid">Submit</button>
+            <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+          </div> -->
+
+        </div>
+      </mat-grid-tile> 
+    </mat-grid-list>
+  </form>
