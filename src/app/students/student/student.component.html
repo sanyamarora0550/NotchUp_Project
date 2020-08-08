@@ -36,10 +36,12 @@
               <mat-select-trigger>
                 {{toppings.value ? toppings.value : ''}}
               </mat-select-trigger>
-              <mat-option  *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+              <mat-option 
+               *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
             </mat-select>
           </mat-form-field>
   
+
           <mat-form-field>
             <input [(ngModel)]="date_selected" formControlName="date" matInput [matDatepicker]="picker" placeholder="Date">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -58,19 +60,21 @@
               </mat-list-option>
             </mat-selection-list> -->
 
-            <mat-label>Slots Avaliable For <i>{{selcted_course}} </i></mat-label>
-            <div *ngFor="let item of data">
-              <div *ngIf="selcted_course == item.course_name">              
-               <b> here  {{item.slots.length}} </b> 
-               <div *ngFor ="let av of item.slots ">
-                 <div *ngFor="let ab of av.slot">
-                  <span>{{ab}} </span>
+    <!--       <mat-label> <i> Slots Avaliable  </i></mat-label>
+            <div *ngFor="let item of sl">
+              <div *ngIf="selcted_course == item.id">              
+               <div *ngFor ="let val of sl.slot ">
+                 <div >
+                    <li  class="example-item" >{{val | date: 'dd/MM/yyyy'}}</li>                 
                  </div>
                </div>
                </div>
-            </div>
+            </div> 
 
-      <!--    <mat-button-toggle-group>
+          
+            
+          
+         <mat-button-toggle-group>
             <mat-button-toggle value="bold">14:00</mat-button-toggle>
             <mat-button-toggle value="italic">14:30</mat-button-toggle>
             <mat-button-toggle value="underline">15:00</mat-button-toggle>
@@ -78,11 +82,36 @@
             <mat-button-toggle value="underline">16:00</mat-button-toggle>
             <mat-button-toggle value="underline">16:30</mat-button-toggle>
             <mat-button-toggle value="underline">17:00</mat-button-toggle>
-          </mat-button-toggle-group>
+          </mat-button-toggle-group> -->
+
+          <mat-label> <i> Slots Avaliable  </i></mat-label>
+          <div *ngFor="let item of sl">
+           <div *ngIf="selcted_course === item.id"> </div>
+           <div *ngFor="let values of item.slot">
+           <div *ngFor="let fi of values"> 
+            <div *ngFor="let fi2 of values.slot"> </div>>
+            <li>
+              {{fi2|date}}
+            </li>
+
+
+           </div>
+           </div>
+          </div> 
+
+
+
+
+
+
+
+
+
+
           <div class="button-row">
             <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid">Submit</button>
             <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
-          </div> -->
+          </div> 
 
         </div>
       </mat-grid-tile> 

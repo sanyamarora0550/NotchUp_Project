@@ -9,6 +9,8 @@ import { StudentComponent } from './students/student/student.component';
 //import { MaterialModule } from './material.module';
 import {HttpClientModule } from '@angular/common/http';
 
+
+import {CdkScrollableModule} from '@angular/cdk/scrolling'; 
 import { CommonModule } from '@angular/common';  
 import {MatToolbarModule} from '@angular/material/toolbar'; 
 import {StudentService} from './shared/student.service';
@@ -25,7 +27,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatInputModule} from '@angular/material/input'; 
 import {MatNativeDateModule} from '@angular/material/core';
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
-
+import { ScrollingModule } from '@angular/cdk/scrolling';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,9 +44,11 @@ import { MatButtonToggleModule } from "@angular/material/button-toggle";
     MatFormFieldModule,
     MatRadioModule,
     MatSelectModule,
+    CdkScrollableModule,
     MatGridListModule,
     MatInputModule,
     MatDatepickerModule,
+    ScrollingModule,
     MatFormFieldModule,
     MatNativeDateModule,
     MatButtonToggleModule,
